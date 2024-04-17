@@ -148,6 +148,10 @@ include '../../layouts/koneksi.php';
                                                             <th scope="row">Status Employee</th>
                                                             <td><?php echo isset($data_resign['StatusEmployee']) ? $data_resign['StatusEmployee'] : ""; ?></td>
                                                         </tr>
+                                                        <tr>
+                                                            <th scope="row">Resign Date</th>
+                                                            <td><?php echo isset($data_resign['ResignDate']) ? $data_resign['ResignDate'] : ""; ?></td>
+                                                        </tr>
                                                     </tbody>
                                                 </table>
                                             </div>

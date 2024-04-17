@@ -11,6 +11,8 @@ if (mysqli_connect_errno()){
 if(isset($_POST['EmployeeID'])) {
     $employeeID = $_POST['EmployeeID'];
 
+    $resignDate = date("Y-m-d");
+
     // Mulai transaksi
     mysqli_begin_transaction($koneksi);
 
@@ -20,7 +22,7 @@ if(isset($_POST['EmployeeID'])) {
 
     if($update_result) {
         // Jika UPDATE berhasil, lakukan INSERT untuk memindahkan data ke tabel res_emp
-        $insert_query = "INSERT INTO exit_emp SELECT * FROM act_emp WHERE EmployeeID = '$employeeID'";
+        $insert_query = "INSERT INTO exit_emp (EmployeeID, EmployeeName, OrganizationCode, OrganizationName, Posid, PositionName, LevelID, OrgLevel, BirthDate, JoinDate, EmploymentType, StatusEmployee, ResignDate) SELECT EmployeeID, EmployeeName, OrganizationCode, OrganizationName, Posid, PositionName, LevelID, OrgLevel, BirthDate, JoinDate, EmploymentType, 'Resign', '$resignDate' FROM act_emp WHERE EmployeeID = '$employeeID'";
         $insert_result = mysqli_query($koneksi, $insert_query);
 
         if($insert_result) {
